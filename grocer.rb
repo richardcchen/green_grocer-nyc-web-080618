@@ -21,6 +21,7 @@ end
 
 def apply_coupons(cart, coupons)
   # code here
+=begin
   couponlength = coupons.length
   couponchecker = {}
   coupons.each do |indcoupon|
@@ -52,14 +53,29 @@ def apply_coupons(cart, coupons)
       if cart.has_key?(["#{couponitem} W/COUPON"])
         repeatcoupon += 1
         #binding.pry
-      end
+    end
       cart["#{couponitem} W/COUPON"] = {:price => couponcost, :clearance => cart[couponitem][:clearance], :count => couponchecker[couponitem]}
     end
-    counter += 1 
+   counter += 1 
   end
   #binding.pry
   cart
+=end
+  coupons.each do |coupon|
+    name = coupon[:item]
+    if cart[name] && cart[name][:count] >= coupon[:num]
+      if cart["#{name} W/COUPON"]
+        cart["#{name} W/COUPON"][:count] += 1
+      else
+        cart["#{name} W/COUPON"] = {:count => 1, :price => coupon[:cost]}
+        cart["#{name} W/COUPON"][:clearance] = cart[name][:clearance]
+      end
+      cart[name][:count] -= coupon[:num]
+    end
+  end
+  cart
 end
+
 
 def apply_clearance(cart)
   # code here
