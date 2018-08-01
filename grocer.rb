@@ -52,10 +52,10 @@ def apply_coupons(cart, coupons)
       if cart.has_key?(["#{couponitem} W/COUPON"])
         repeatcoupon += 1
         #binding.pry
-      end
+    end
       cart["#{couponitem} W/COUPON"] = {:price => couponcost, :clearance => cart[couponitem][:clearance], :count => couponchecker[couponitem]}
     end
-    counter += 1 
+   counter += 1 
   end
   #binding.pry
   cart
