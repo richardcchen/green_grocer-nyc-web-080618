@@ -1,5 +1,25 @@
+require "pry"
+
 def consolidate_cart(cart)
-  # code here
+  #binding.pry
+  #code here
+  newcart = {}
+  cart.each do |x|
+    counter = cart.count(x)
+    x.each do |item, iteminfo|
+      x[item][:count] = counter
+      newcart = cart.uniq
+     #binding.pry
+    end
+  end
+  newcart2 = {}
+  cartlength = newcart.length - 1
+  for counter2 in 0..newcart.length do
+    newcart2 = newcart2.merge!(newcart[counter2])
+   #binding.pry
+  end
+  binding.pry
+  newcart2
 end
 
 def apply_coupons(cart, coupons)
